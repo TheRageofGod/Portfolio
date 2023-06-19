@@ -5,18 +5,21 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] Transform playerCamera = null;//Reffrences Camera
+    [SerializeField] Rigidbody rb;
     [SerializeField] float mouseSensitivity = 3.5f;//Controls Mouse Sensitivity
     [SerializeField][Range(0.0f, 0.5f)] float mouseSmoothTime = 0.3f;//controls how smooth the Camera movement is
 
     [SerializeField] float walkSpeed = 6.0f;//controls how fast you walk
     [SerializeField][Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;//controls how smooth the movement is
     [SerializeField] float gravity = -13.0f;//Gravity Value
+    [SerializeField] float jumpPower = 5.0f;
 
     [SerializeField] bool lockCursor = true;//bool to lock Cursor
 
     CharacterController characterController = null;//CharacterController Refference
     float cameraPitch = 0.0f;//Controls Camera Pitch
-    float velocityY = 0.0f;//Gravity Velocity
+    public float velocityY = 0.0f;//Gravity Velocity
+    public bool isGrounded = true;
 
     Vector2 currentDir = Vector2.zero;
     Vector2 currentDirVelocity = Vector2.zero;
@@ -26,7 +29,10 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
         characterController = GetComponent<CharacterController>();//Plugs in the Controller on the object
+        //isGrounded = characterController.isGrounded;
+
         if (lockCursor == true)
         {
             Cursor.lockState = CursorLockMode.Locked;//locks the cursor
@@ -60,14 +66,30 @@ public class PlayerController : MonoBehaviour
 
         currentDir = Vector2.SmoothDamp(currentDir, targetDir, ref currentDirVelocity, moveSmoothTime);//smooths movement
 
-        if (characterController.isGrounded == true)
+        
+
+        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * walkSpeed + Vector3.up;//creates velocity for movement 
+
+        
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)//checks if the characer is grounded
         {
-            velocityY = 0.0f;
-            velocityY += gravity * Time.deltaTime;
-        }//Defines Gravity
 
-        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * walkSpeed + Vector3.up * velocityY;//creates velocity for both movement and gravity
-
+            velocity.y = jumpPower;
+        }
+        velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);//Applies the Velocity and makes it independent of framerate
     }
+
+  
+    private void OnTriggerEnter(Collider other)// Resets the Gravity
+    {
+        if (other.tag == "Ground")
+       {
+            Debug.Log("Ground");
+           isGrounded = characterController.isGrounded;
+       }
+    }
+
+
+
 }

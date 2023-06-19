@@ -7,6 +7,7 @@ TagManager:
   - RedWall
   - GreenWall
   - BlueWall
+  - Ground
   layers:
   - Default
   - TransparentFX

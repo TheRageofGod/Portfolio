@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 1164933333}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -542,6 +542,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 791640351458553769, guid: b40ccf9750def0c418a9e7ce10a794f0, type: 3}
+      propertyPath: gravity
+      value: -800
+      objectReference: {fileID: 0}
+    - target: {fileID: 791640351458553769, guid: b40ccf9750def0c418a9e7ce10a794f0, type: 3}
+      propertyPath: jumpPower
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 791640351458553769, guid: b40ccf9750def0c418a9e7ce10a794f0, type: 3}
+      propertyPath: isGrounded
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 791640351458553769, guid: b40ccf9750def0c418a9e7ce10a794f0, type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1290092838}
@@ -555,7 +567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2796861273090843208, guid: b40ccf9750def0c418a9e7ce10a794f0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.15
+      value: 0.081
       objectReference: {fileID: 0}
     - target: {fileID: 2796861273090843208, guid: b40ccf9750def0c418a9e7ce10a794f0, type: 3}
       propertyPath: m_LocalPosition.z
