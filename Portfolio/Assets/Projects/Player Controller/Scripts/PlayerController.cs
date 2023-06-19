@@ -19,13 +19,15 @@ public class PlayerController : MonoBehaviour
     CharacterController characterController = null;//CharacterController Refference
     float cameraPitch = 0.0f;//Controls Camera Pitch
     public float velocityY = 0.0f;//Gravity Velocity
-    public bool isGrounded = true;
+    public bool isGrounded = false;
 
     Vector2 currentDir = Vector2.zero;
     Vector2 currentDirVelocity = Vector2.zero;
 
     Vector2 currentMouseDelta = Vector2.zero;
     Vector2 currentMouseDeltaVelocity = Vector2.zero;
+
+    public Vector3 debugVelocity;
 
     private void Start()
     {
@@ -39,7 +41,7 @@ public class PlayerController : MonoBehaviour
             Cursor.visible = false;//sets the cursor Invisible
         }
     }
-    private void Update()
+    private void FixedUpdate()
     {
         UpdateCameraLook();//Calls the Camera look function
         UpdateMovement();//Calls teh Movement Function
@@ -66,24 +68,24 @@ public class PlayerController : MonoBehaviour
 
         currentDir = Vector2.SmoothDamp(currentDir, targetDir, ref currentDirVelocity, moveSmoothTime);//smooths movement
 
-        
-
-        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * walkSpeed + Vector3.up;//creates velocity for movement 
+        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * walkSpeed + Vector3.zero;//creates velocity for movement 
 
         
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)//checks if the characer is grounded
+        if (Input.GetKeyDown(KeyCode.Space))//checks if the characer is grounded
         {
 
             velocity.y = jumpPower;
         }
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);//Applies the Velocity and makes it independent of framerate
+        velocityY = velocity.y;
+        debugVelocity = velocity;
     }
 
   
-    private void OnTriggerEnter(Collider other)// Resets the Gravity
+    private void OnCollisionEnter(Collision other)// Resets the Gravity
     {
-        if (other.tag == "Ground")
+        if (other.gameObject.CompareTag("Ground"))
        {
             Debug.Log("Ground");
            isGrounded = characterController.isGrounded;

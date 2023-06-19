@@ -550,6 +550,10 @@ PrefabInstance:
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 791640351458553769, guid: b40ccf9750def0c418a9e7ce10a794f0, type: 3}
+      propertyPath: velocityY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 791640351458553769, guid: b40ccf9750def0c418a9e7ce10a794f0, type: 3}
       propertyPath: isGrounded
       value: 1
       objectReference: {fileID: 0}
@@ -557,6 +561,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1290092838}
+    - target: {fileID: 791640351458553769, guid: b40ccf9750def0c418a9e7ce10a794f0, type: 3}
+      propertyPath: mouseSmoothTime
+      value: 0.061
+      objectReference: {fileID: 0}
     - target: {fileID: 2796861273090843208, guid: b40ccf9750def0c418a9e7ce10a794f0, type: 3}
       propertyPath: m_RootOrder
       value: 3
