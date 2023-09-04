@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         UpdateCameraLook();//Calls the Camera look function
-        UpdateMovement();//Calls teh Movement Function
+        UpdateMovement();//Calls the Movement Function
     }
 
     void UpdateCameraLook()
