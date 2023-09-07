@@ -155,6 +155,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc917049de85fed4e9758b4931b8ed18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkingSpeed: 7.5
+  runningSpeed: 11.5
+  jumpSpeed: 8
+  gravity: 20
+  playerCamera: {fileID: 1255759912}
+  lookSpeed: 2
+  lookXLimit: 45
+  moveDirection: {x: 0, y: 0, z: 0}
+  isCrouching: 0
+  crouchHeight: 0.5
+  crouchSpeed: 3.5
+  crouchTransitionSpeed: 10
+  crouchCameraOffset: -0.5
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  wallJumpForce: 10
+  canMove: 1
 --- !u!143 &568782924
 CharacterController:
   m_ObjectHideFlags: 0
@@ -498,6 +516,7 @@ GameObject:
   - component: {fileID: 1255759910}
   - component: {fileID: 1255759912}
   - component: {fileID: 1255759911}
+  - component: {fileID: 1255759913}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -571,6 +590,21 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1255759913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255759909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f7b16af20161ad4f9ac69e29e63a445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkingBobbingSpeed: 14
+  bobbingAmount: 0.05
+  controller: {fileID: 568782923}
 --- !u!1001 &2001847328649836126
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -682,6 +716,10 @@ PrefabInstance:
     - target: {fileID: 6142996634881651065, guid: 4e0440fd81f39ca4cadf1da26c62cfec, type: 3}
       propertyPath: m_Name
       value: BlueWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142996634881651065, guid: 4e0440fd81f39ca4cadf1da26c62cfec, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0440fd81f39ca4cadf1da26c62cfec, type: 3}
